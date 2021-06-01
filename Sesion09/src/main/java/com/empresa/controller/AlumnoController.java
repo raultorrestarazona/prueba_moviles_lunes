@@ -43,7 +43,7 @@ public class AlumnoController {
 		}
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/porId/{id}")
 	@ResponseBody
 	public ResponseEntity<Alumno> listaPorId(@PathVariable("id") int idAlumno){
 		Optional<Alumno> optAlumno =  service.obtienePorId(idAlumno);
@@ -52,6 +52,12 @@ public class AlumnoController {
 		}else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	@GetMapping("/porDni/{dni}")
+	@ResponseBody
+	public ResponseEntity<List<Alumno>> listaPorDni(@PathVariable("dni") String dni){
+		return ResponseEntity.ok(service.listaPorDni(dni));
 	}
 	
 	@PostMapping
